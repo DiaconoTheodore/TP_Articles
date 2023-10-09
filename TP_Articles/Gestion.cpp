@@ -8,19 +8,20 @@ void Gestion::lireFichier()
 	entree.open("etudiant.txt");
 	if (!entree.fail())
 	{
-		Article* etud;
+		string nom;
+		Article* art;
 		do
 		{
-			etud = new Article();
-			entree >> etud->Nom;
+			entree >> nom;
+			art = new Article(nom);
 			if (entree.eof())
 			{
-				delete etud;
+				delete art;
 				break;
 			}
-			entree >> etud->Prenom;
-			entree >> etud->Age;
-			listeArticle->push_back(etud);
+			entree >> art->prixHT;
+			entree >> art->stock;
+			listeArticle->push_back(art);
 		} while (!entree.eof());
 		entree.close();
 	}
@@ -32,8 +33,8 @@ void Gestion::sauverFichier()
 	sortie.open("etudiant.txt");
 	for (int i = 0; i < listeArticle->size(); i++)
 	{
-		Article* etud = listeArticle->at(i);
-		sortie << etud->Nom << " " << etud->Prenom << " " << etud->Age << endl;
+		Article* art = listeArticle->at(i);
+		sortie << art->getNom() << " " << art->prixHT << " " << art->stock << endl;
 	}
 	sortie.close();
 }
@@ -87,8 +88,8 @@ bool Gestion::Supprimer(int pos)
 	bool ok = false;
 	if ((pos >= 0) && (pos < getTaille()))
 	{
-		Article* etud = listeArticle->at(listeArticle->size() - 1);
-		delete etud;
+		Article* art = listeArticle->at(listeArticle->size() - 1);
+		delete art;
 		listeArticle->pop_back();
 		ok = true;
 	}
