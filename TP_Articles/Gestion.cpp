@@ -65,9 +65,9 @@ int Gestion::getTaille()
 	return (int)listeArticle->size();
 }
 
-Article* Gestion::Ajouter()
+Article* Gestion::Ajouter(string n)
 {
-	Article* temp = new Article();
+	Article* temp = new Article(n);
 	listeArticle->push_back(temp);
 	return temp;
 }

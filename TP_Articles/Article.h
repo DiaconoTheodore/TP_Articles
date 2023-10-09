@@ -10,11 +10,6 @@ public:
 	string getNom();
 	double prixHT;
 	int stock;
-
-	//test
-	string Nom;
-	string Prenom;
-	int Age;
 };
 
 

@@ -17,6 +17,7 @@ void IHM::Start(Gestion* g)
 	this->gest = g;
 	int choix;
 	int numArticle;
+	string art;
 	Article* tmp;
 	do
 	{
@@ -26,7 +27,9 @@ void IHM::Start(Gestion* g)
 		switch (choix)
 		{
 		case 1:
-			tmp = gest->Ajouter();
+			cout << "Entrez le nom de l'article : ";
+			cin >> art;
+			tmp = gest->Ajouter(art);
 			Modifier(tmp);
 			break;
 		case 2:
@@ -77,27 +80,27 @@ int IHM::AfficheMenu()
 
 int IHM::ChoixArticle()
 {
-	int numEtudiant = -1;
+	int numArticle = -1;
 	if (gest->getTaille() > 0)
 	{
 		cout << "Quel Etudiant ? (1/" << gest->getTaille() << ") :";
-		cin >> numEtudiant;
-		if (!((numEtudiant >= 1) && (numEtudiant <= gest->getTaille())))
+		cin >> numArticle;
+		if (!((numArticle >= 1) && (numArticle <= gest->getTaille())))
 		{
-			numEtudiant = -1;
+			numArticle = -1;
 		}
 		// !!!!! Attention numEtudiant commence à 1 !!!!!
 	}
-	return numEtudiant;
+	return numArticle;
 }
 
-void IHM::Modifier(Article* etud)
+void IHM::Modifier(Article* art)
 {
 	cout << "     -----=====  Modification  =====----- " << endl;
-	cout << "Etudiant : " << endl << "Nom : ";
-	cin >> etud->Nom;
-	cout << "Prenom : ";
-	cin >> etud->Prenom;
+	cout << "PrixHT : ";
+	cin >> art->prixHT;
+	cout << "Stock : ";
+	cin >> art->stock;
 	//
 }
 
