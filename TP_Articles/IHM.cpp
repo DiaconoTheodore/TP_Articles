@@ -106,14 +106,14 @@ void IHM::Modifier(Article* art)
 
 void IHM::Afficher(Article* etud)
 {
-	cout << "     -----=====  Affichage  =====----- " << endl;
+	cout << "     -----=====  Hors Stock  =====----- " << endl;
 	// add methode
 }
 
 void IHM::AfficherTout()
 {
 	double test = NULL;
-	cout << "     -----=====  Affichage  =====----- " << endl;
+	cout << "     -----=====  Stock  =====----- " << endl;
 	// On affiche tous les objets crées
 	for (int j = 0; j < gest->getTaille(); j++)
 	{
@@ -121,5 +121,5 @@ void IHM::AfficherTout()
 		cout << j + 1 << ". " << art->getNom() << " " << art->prixHT << " e	" << art->stock << endl;
 		test = test + (art->prixHT * art->stock);
 	}
-	cout << "prix total : " << test << " e." << endl;
+	cout << "Montant total HT du stock : " << test << " e." << endl;
 }
