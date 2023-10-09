@@ -83,7 +83,7 @@ int IHM::ChoixArticle()
 	int numArticle = -1;
 	if (gest->getTaille() > 0)
 	{
-		cout << "Quel Etudiant ? (1/" << gest->getTaille() << ") :";
+		cout << "Quel Article ? (1/" << gest->getTaille() << ") :";
 		cin >> numArticle;
 		if (!((numArticle >= 1) && (numArticle <= gest->getTaille())))
 		{
@@ -104,19 +104,22 @@ void IHM::Modifier(Article* art)
 	//
 }
 
-//void IHM::Afficher(Article* etud)
-//{
-//	cout << "     -----=====  Affichage  =====----- " << endl;
-//	etud->AfficheInfo();
-//}
-//
-//void IHM::AfficherTout()
-//{
-//	cout << "     -----=====  Affichage  =====----- " << endl;
-//	// On affiche tous les objets crées
-//	for (int j = 0; j < gest->getTaille(); j++)
-//	{
-//		Article* etud = gest->LireAt(j);
-//		etud->AfficheInfo();
-//	}
-//}
+void IHM::Afficher(Article* etud)
+{
+	cout << "     -----=====  Affichage  =====----- " << endl;
+	// add methode
+}
+
+void IHM::AfficherTout()
+{
+	double test = NULL;
+	cout << "     -----=====  Affichage  =====----- " << endl;
+	// On affiche tous les objets crées
+	for (int j = 0; j < gest->getTaille(); j++)
+	{
+		Article* art = gest->LireAt(j);
+		cout << j + 1 << ". " << art->getNom() << " " << art->prixHT << " e	" << art->stock << endl;
+		test = test + (art->prixHT * art->stock);
+	}
+	cout << "prix total : " << test << " e." << endl;
+}
