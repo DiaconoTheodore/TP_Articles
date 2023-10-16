@@ -1,5 +1,6 @@
 #include "IHM.h"
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 IHM::IHM()
@@ -17,10 +18,12 @@ void IHM::Start(Gestion* g)
 	this->gest = g;
 	int choix;
 	int numArticle;
+	int total;
 	string art;
 	Article* tmp;
 	do
 	{
+		total = 0;
 		choix = AfficheMenu();
 
 		//
@@ -33,6 +36,9 @@ void IHM::Start(Gestion* g)
 			Modifier(tmp);
 			break;
 		case 2:
+			total = AfficherTout();
+			cout << "     -----=====  Modification  =====----- " << endl;
+			cout << "Quel article modifier ? ";
 			numArticle = this->ChoixArticle();
 			if (numArticle > 0)
 			{
@@ -41,6 +47,8 @@ void IHM::Start(Gestion* g)
 			}
 			break;
 		case 3:
+			total = AfficherTout();
+			cout << "Quel article suprimer ? ";
 			numArticle = this->ChoixArticle();
 			if (numArticle > 0)
 			{
@@ -56,7 +64,8 @@ void IHM::Start(Gestion* g)
 			}
 			break;
 		case 5:
-			AfficherTout();
+			total = AfficherTout();
+			cout << "Montant total HT du stock : " << total << " e." << endl;
 			break;
 		}
 	} while (choix != 0);
@@ -83,7 +92,6 @@ int IHM::ChoixArticle()
 	int numArticle = -1;
 	if (gest->getTaille() > 0)
 	{
-		cout << "Quel Article ? (1/" << gest->getTaille() << ") :";
 		cin >> numArticle;
 		if (!((numArticle >= 1) && (numArticle <= gest->getTaille())))
 		{
@@ -96,7 +104,6 @@ int IHM::ChoixArticle()
 
 void IHM::Modifier(Article* art)
 {
-	cout << "     -----=====  Modification  =====----- " << endl;
 	cout << "PrixHT : ";
 	cin >> art->prixHT;
 	cout << "Stock : ";
@@ -110,7 +117,7 @@ void IHM::Afficher(Article* etud)
 	// add methode
 }
 
-void IHM::AfficherTout()
+int IHM::AfficherTout()
 {
 	double test = NULL;
 	cout << "     -----=====  Stock  =====----- " << endl;
@@ -118,8 +125,8 @@ void IHM::AfficherTout()
 	for (int j = 0; j < gest->getTaille(); j++)
 	{
 		Article* art = gest->LireAt(j);
-		cout << j + 1 << ". " << art->getNom() << " " << art->prixHT << " e	" << art->stock << endl;
+		cout << setfill(' ') << setw(4) << left << j + 1 << setfill(' ') << setw(20) << left << art->getNom() << setfill(' ') << setw(15) << right << art->prixHT << setfill(' ') << setw(10) << right << art->stock << endl;
 		test = test + (art->prixHT * art->stock);
 	}
-	cout << "Montant total HT du stock : " << test << " e." << endl;
+	return test;
 }

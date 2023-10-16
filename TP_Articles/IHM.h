@@ -22,5 +22,5 @@ private:
 	int ChoixArticle();
 	void Modifier(Article*);
 	void Afficher(Article*);
-	void AfficherTout();
+	int AfficherTout();
 };
