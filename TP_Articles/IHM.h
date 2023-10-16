@@ -21,6 +21,6 @@ private:
 	int AfficheMenu();
 	int ChoixArticle();
 	void Modifier(Article*);
-	void Afficher(Article*);
+	void Afficher(/*Article**/);
 	int AfficherTout();
 };

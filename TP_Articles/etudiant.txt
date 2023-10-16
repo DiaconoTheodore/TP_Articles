@@ -1,0 +1,4 @@
+doudou1 15 15
+doudou2 15 0
+doudou3 54 0
+doudou4 41 1

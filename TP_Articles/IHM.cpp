@@ -56,16 +56,22 @@ void IHM::Start(Gestion* g)
 			}
 			break;
 		case 4:
-			numArticle = this->ChoixArticle();
+			/*numArticle = this->ChoixArticle();
 			if (numArticle > 0)
 			{
 				tmp = gest->LireAt(numArticle - 1);
 				Afficher(tmp);
-			}
+			}*/
+			Afficher();
 			break;
 		case 5:
 			total = AfficherTout();
 			cout << "Montant total HT du stock : " << total << " e." << endl;
+			break;
+		case 6:
+			total = AfficherTout();
+			cout << "Que voulez vous acheter ? (0:Sortie)";
+			cin >> numArticle;
 			break;
 		}
 	} while (choix != 0);
@@ -80,6 +86,7 @@ int IHM::AfficheMenu()
 	cout << "3 : Supprimer un Article" << endl;
 	cout << "4 : Afficher les Articles hors stock" << endl;
 	cout << "5 : Afficher tous les Article" << endl;
+	cout << "6 : Acheter des Articles" << endl;
 	cout << "0 : Quitter" << endl;
 	cout << "Choix :";
 	cin >> choix;
@@ -111,10 +118,18 @@ void IHM::Modifier(Article* art)
 	//
 }
 
-void IHM::Afficher(Article* etud)
+void IHM::Afficher(/*Article* art*/)
 {
-	cout << "     -----=====  Hors Stock  =====----- " << endl;
+	cout << "     -----=====  Hors Stock  =====----- " << endl; 
 	// add methode
+	for (int j = 0; j < gest->getTaille(); j++)
+	{
+		Article* art = gest->LireAt(j);
+		if (art->stock == 0)
+		{
+			cout << setfill(' ') << setw(4) << left << j + 1 << setfill(' ') << setw(20) << left << art->getNom() << setfill(' ') << setw(15) << right << art->prixHT << setfill(' ') << setw(10) << right << art->stock << endl;
+		}
+	}
 }
 
 int IHM::AfficherTout()

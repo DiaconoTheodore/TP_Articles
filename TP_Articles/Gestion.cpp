@@ -88,7 +88,7 @@ bool Gestion::Supprimer(int pos)
 	bool ok = false;
 	if ((pos >= 0) && (pos < getTaille()))
 	{
-		Article* art = listeArticle->at(listeArticle->size() - 1);
+		Article* art = listeArticle->at(pos);
 		delete art;
 		listeArticle->pop_back();
 		ok = true;
