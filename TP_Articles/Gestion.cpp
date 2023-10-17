@@ -5,7 +5,7 @@ using namespace std;
 void Gestion::lireFichier()
 {
 	ifstream entree = ifstream();
-	entree.open("etudiant.txt");
+	entree.open("articles.txt");
 	if (!entree.fail())
 	{
 		string nom;
@@ -30,7 +30,7 @@ void Gestion::lireFichier()
 void Gestion::sauverFichier()
 {
 	ofstream sortie = ofstream();
-	sortie.open("etudiant.txt");
+	sortie.open("articles.txt");
 	for (int i = 0; i < listeArticle->size(); i++)
 	{
 		Article* art = listeArticle->at(i);
@@ -94,4 +94,16 @@ bool Gestion::Supprimer(int pos)
 		ok = true;
 	}
 	return ok;
+}
+
+Article* Gestion::Commande(int nbr, int pos)
+{
+	Article* ticket;
+	listeArticle->at(pos)->stock = listeArticle->at(pos)->stock - nbr;
+
+	ticket = new Article(listeArticle->at(pos)->getNom());
+	ticket->prixHT = listeArticle->at(pos)->prixHT;
+	ticket->stock = nbr;
+
+	return ticket;
 }

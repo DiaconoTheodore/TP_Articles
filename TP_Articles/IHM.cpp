@@ -56,12 +56,6 @@ void IHM::Start(Gestion* g)
 			}
 			break;
 		case 4:
-			/*numArticle = this->ChoixArticle();
-			if (numArticle > 0)
-			{
-				tmp = gest->LireAt(numArticle - 1);
-				Afficher(tmp);
-			}*/
 			Afficher();
 			break;
 		case 5:
