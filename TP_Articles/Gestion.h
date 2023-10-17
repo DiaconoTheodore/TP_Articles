@@ -19,5 +19,5 @@ public:
 	Article* Ajouter(string n);
 	Article* LireAt(int pos);
 	bool Supprimer(int pos);
-	Article* Commande(int nbr, int pos);
+	Article* Commande(int nbrAchete, int numArticle);
 };

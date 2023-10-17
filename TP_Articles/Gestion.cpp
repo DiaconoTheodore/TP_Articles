@@ -96,14 +96,14 @@ bool Gestion::Supprimer(int pos)
 	return ok;
 }
 
-Article* Gestion::Commande(int nbr, int pos)
+Article* Gestion::Commande(int nbrAchete, int numArticle)
 {
 	Article* ticket;
-	listeArticle->at(pos)->stock = listeArticle->at(pos)->stock - nbr;
+	listeArticle->at(numArticle)->stock = listeArticle->at(numArticle)->stock - nbrAchete;
 
-	ticket = new Article(listeArticle->at(pos)->getNom());
-	ticket->prixHT = listeArticle->at(pos)->prixHT;
-	ticket->stock = nbr;
+	ticket = new Article(listeArticle->at(numArticle)->getNom());
+	ticket->prixHT = listeArticle->at(numArticle)->prixHT;
+	ticket->stock = nbrAchete;
 
 	return ticket;
 }

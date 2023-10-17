@@ -63,9 +63,7 @@ void IHM::Start(Gestion* g)
 			cout << "Montant total HT du stock : " << total << " e." << endl;
 			break;
 		case 6:
-			total = AfficherTout();
-			cout << "Que voulez vous acheter ? (0:Sortie)";
-			cin >> numArticle;
+			Commande();
 			break;
 		}
 	} while (choix != 0);
@@ -138,4 +136,33 @@ int IHM::AfficherTout()
 		test = test + (art->prixHT * art->stock);
 	}
 	return test;
+}
+
+void IHM::Commande()
+{
+	int numArticle;
+	int nbrAchete;
+	Article* ticket;
+	bool flag = false;
+	vector<Article*>* liste_de_course = new vector<Article*>();
+
+	AfficherTout();
+	cout << "     -----=====  Commande  =====----- " << endl;
+	do
+	{
+		cout << "Que voulez vous acheter ? (0:Sortie)";
+		numArticle = this->ChoixArticle();
+		if ((numArticle == 0) || (numArticle == -1))
+		{
+			flag = true;
+			break;
+			// A revoir !!!!!
+		}
+		ticket = new Article(gest->LireAt(numArticle)->getNom());
+		if (numArticle > 0)
+		{
+			ticket = gest->LireAt(numArticle - 1);
+		}
+		cout <<
+	}while(!flag)
 }

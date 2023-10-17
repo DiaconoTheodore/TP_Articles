@@ -23,4 +23,5 @@ private:
 	void Modifier(Article*);
 	void Afficher(/*Article**/);
 	int AfficherTout();
+	void Commande();
 };
