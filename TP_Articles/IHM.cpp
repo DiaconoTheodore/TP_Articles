@@ -142,27 +142,41 @@ void IHM::Commande()
 {
 	int numArticle;
 	int nbrAchete;
-	Article* ticket;
-	bool flag = false;
+	Article* art;
+	int sortie = 1;
 	vector<Article*>* liste_de_course = new vector<Article*>();
 
 	AfficherTout();
 	cout << "     -----=====  Commande  =====----- " << endl;
-	do
+	while (sortie != 0)
 	{
 		cout << "Que voulez vous acheter ? (0:Sortie)";
 		numArticle = this->ChoixArticle();
-		if ((numArticle == 0) || (numArticle == -1))
-		{
-			flag = true;
-			break;
-			// A revoir !!!!!
-		}
-		ticket = new Article(gest->LireAt(numArticle)->getNom());
 		if (numArticle > 0)
 		{
-			ticket = gest->LireAt(numArticle - 1);
+			art = new Article(gest->LireAt(numArticle)->getNom());
+			art = gest->LireAt(numArticle - 1);
+			cout << "Combien ? ";
+			cin >> nbrAchete;
+			liste_de_course->push_back(gest->Commande(nbrAchete, numArticle - 1));
 		}
-		cout <<
-	}while(!flag)
+		else
+		{
+			sortie = 0;
+		}
+	}
+
+	double total = NULL;
+	double totalTTC = NULL;
+	cout << "     -----=====  Votre Ticket  =====----- " << endl;
+	cout << setfill(' ') << setw(4) << left << "--" << setfill(' ') << setw(20) << left << "Article" << setfill(' ') << setw(15) << right << "prix HT" << setfill(' ') << setw(10) << right << "stock" << endl;
+	for (int i = 0; i < liste_de_course->size(); i++)
+	{
+		Article* ticket = liste_de_course->at(i);
+		cout << setfill(' ') << setw(4) << left << i + 1 << setfill(' ') << setw(20) << left << ticket->getNom() << setfill(' ') << setw(15) << right << ticket->prixHT << setfill(' ') << setw(10) << right << ticket->stock << endl;
+		total = total + (ticket->prixHT * ticket->stock);
+	}
+	totalTTC = total * 1.2;
+	cout << "Montant total HT : " << total << " e." << endl;
+	cout << "Montant total TTC : " << totalTTC << " e." << endl;
 }
